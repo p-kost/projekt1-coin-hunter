@@ -12,11 +12,24 @@ let panacek = document.getElementById('panacek');
 
 //pocatecni umisteni panacka (když z toho udelam fci, tak to nefunguje)
 
-	let veVysce = window.innerHeight / 2;
-	let vSirce = window.innerWidth / 2;
+let pTop = window.innerHeight / 2;
+let pLeft = window.innerWidth / 2;
 		
-	panacek.style.top = veVysce + "px";
-	panacek.style.left = vSirce + "px";
+panacek.style.top = pTop + "px";
+panacek.style.left = pLeft + "px";
+
+//umisteni mince (opět ve fci nefunguje)
+
+let mince = document.getElementById('mince');
+
+let mTop = Math.floor(Math.random() * window.innerHeight);
+let mLeft = Math.floor(Math.random() * window.innerWidth);
+
+mince.style.top = mTop + "px";
+mince.style.left = mLeft + "px";
+
+
+
 
 
 
