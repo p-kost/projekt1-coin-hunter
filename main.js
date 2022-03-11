@@ -6,32 +6,74 @@ if (!( panacekX + panacekSirka < minceX || minceX + minceSirka < panacekX || pan
 */
 
 
-// sem začni psát svůj program
+// Globální proměnné
 
 let panacek = document.getElementById('panacek');
-
-//pocatecni umisteni panacka (když z toho udelam fci, tak to nefunguje)
-
-let pTop = window.innerHeight / 2;
-let pLeft = window.innerWidth / 2;
-		
-panacek.style.top = pTop + "px";
-panacek.style.left = pLeft + "px";
-
-//umisteni mince (opět ve fci nefunguje)
+let panacekX = window.innerWidth / 2;
+let panacekY = window.innerHeight / 2;
+let panacekSirka = panacek.width;
+let panacekVyska = panacek.height;
 
 let mince = document.getElementById('mince');
-
-let mTop = Math.floor(Math.random() * window.innerHeight);
-let mLeft = Math.floor(Math.random() * window.innerWidth);
-
-mince.style.top = mTop + "px";
-mince.style.left = mLeft + "px";
+let minceX = Math.floor(Math.random() * window.innerWidth);
+let minceY = Math.floor(Math.random() * window.innerHeight);
+let minceSirka = mince.width;
+let minceVyska = mince.heiht;
 
 
+//při načtení obrazovky
+
+function init() {	
+	umisteniPanacka();
+	umisteniMince();
+}
+
+// umistění panáčka
+
+function umisteniPanacka() {
+	panacek.style.left = panacekX + "px";
+	panacek.style.top = panacekY + "px";
+}
+
+// umístění mince
+
+function umisteniMince() {
+	mince.style.left = minceX + "px";
+	mince.style.top = minceY + "px";
+}
 
 
 
+// chození panáčka 
 
+function jdi(event) {
+	if (event.key === "ArrowUp"){
+		console.log("Panáček jde nahoru.");
+		panacekY = panacekY-10;
+	}
+	if (event.key === "ArrowDown") {
+		console.log("Panáček jde dolů.");
+		panacekY = panacekY+10;
+	}
+	if (event.key === "ArrowLeft") {
+		console.log("Panáček jde doleva.");
+		panacekX = panacekX-10;
+	}
+	if (event.key === "ArrowRight") {
+		console.log("Panáček jde doprava.");
+		panacekX = panacekX+10;
+	}
+	umisteniPanacka();
+	if (!( panacekX + panacekSirka < minceX || 
+		minceX + minceSirka < panacekX || 
+		panacekY + panacekVyska < minceY || 
+		minceY + minceVyska < panacekY)) {
+		console.log("Panáček snědl minci.")
+		kolize();
+	}
+}
 
+function kolize(){
+	umisteniMince();
+}
 
